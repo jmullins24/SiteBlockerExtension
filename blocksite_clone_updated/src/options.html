@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>BlockSite Clone - Options</title>
+  <link rel="stylesheet" href="css/options.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="js/password-utils.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="logo-container">
+        <img src="images/icon48.png" alt="BlockSite Clone Logo" class="logo">
+        <h1>BlockSite Clone</h1>
+      </div>
+      <nav class="nav-menu">
+        <ul>
+          <li class="active" data-tab="block-list"><i class="fas fa-ban"></i> Block List</li>
+          <li data-tab="schedule"><i class="fas fa-clock"></i> Schedule</li>
+          <li data-tab="insights"><i class="fas fa-chart-bar"></i> Insights</li>
+          <li data-tab="settings"><i class="fas fa-cog"></i> Settings</li>
+        </ul>
+      </nav>
+    </div>
+    
+    <div class="content">
+      <!-- Block List Tab -->
+      <div class="tab-content active" id="block-list">
+        <h2>Block List</h2>
+        <p>Add websites to block or remove existing ones from your block list.</p>
+        
+        <div class="add-site-form">
+          <input type="text" id="new-site-input" placeholder="Enter website URL (e.g., facebook.com)">
+          <button id="add-site-btn" class="btn primary-btn">Add to Block List</button>
+        </div>
+        
+        <div class="blocked-sites-list">
+          <div class="list-header">
+            <span>Website</span>
+            <span>Date Added</span>
+            <span>Actions</span>
+          </div>
+          <div id="blocked-sites-container">
+            <!-- Sites will be added here dynamically -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Schedule Tab -->
+      <div class="tab-content" id="schedule">
+        <h2>Schedule</h2>
+        <p>Set up schedules for when blocking should be active.</p>
+        
+        <div class="schedules-container">
+          <div class="add-schedule-form">
+            <h3>Add New Schedule</h3>
+            
+            <div class="form-group">
+              <label>Start Time:</label>
+              <input type="time" id="schedule-start-time">
+            </div>
+            
+            <div class="form-group">
+              <label>End Time:</label>
+              <input type="time" id="schedule-end-time">
+            </div>
+            
+            <div class="form-group">
+              <label>Days:</label>
+              <div class="days-selector">
+                <label><input type="checkbox" data-day="0"> Sun</label>
+                <label><input type="checkbox" data-day="1"> Mon</label>
+                <label><input type="checkbox" data-day="2"> Tue</label>
+                <label><input type="checkbox" data-day="3"> Wed</label>
+                <label><input type="checkbox" data-day="4"> Thu</label>
+                <label><input type="checkbox" data-day="5"> Fri</label>
+                <label><input type="checkbox" data-day="6"> Sat</label>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Apply to:</label>
+              <div class="schedule-sites-selector">
+                <label><input type="radio" name="sites-scope" value="all" checked> All blocked sites</label>
+                <label><input type="radio" name="sites-scope" value="selected"> Selected sites only</label>
+              </div>
+              <div id="sites-selection-container" class="sites-selection hidden">
+                <p class="selection-hint">Select sites to include in this schedule:</p>
+                <div id="schedule-sites-list" class="schedule-sites-list">
+                  <!-- Sites will be added here dynamically -->
+                </div>
+              </div>
+            </div>
+            
+            <button id="add-schedule-btn" class="btn primary-btn">Add Schedule</button>
+          </div>
+          
+          <div class="schedules-list">
+            <h3>Your Schedules</h3>
+            <div id="schedules-container">
+              <!-- Schedules will be added here dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Insights Tab -->
+      <div class="tab-content" id="insights">
+        <h2>Insights</h2>
+        <p>View statistics about your blocked sites and time saved.</p>
+        
+        <div class="stats-container">
+          <div class="stat-card">
+            <h3>Sites Blocked</h3>
+            <div class="stat-value" id="total-sites-blocked">0</div>
+            <p>Total sites blocked</p>
+          </div>
+          
+          <div class="stat-card">
+            <h3>Time Saved</h3>
+            <div class="stat-value" id="total-time-saved">0</div>
+            <p>Hours saved from distractions</p>
+          </div>
+        </div>
+        
+        <div class="chart-container">
+          <h3>Top Blocked Sites</h3>
+          <div id="top-sites-chart">
+            <!-- Chart will be rendered here -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Settings Tab -->
+      <div class="tab-content" id="settings">
+        <h2>Settings</h2>
+        <p>Configure extension settings and preferences.</p>
+        
+        <div class="settings-group">
+          <h3>General Settings</h3>
+          
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Enable Blocking</h4>
+              <p>Turn website blocking on or off</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="enable-blocking-toggle" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+          
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Focus Mode</h4>
+              <p>Block all sites on your list regardless of schedule</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="focus-mode-toggle">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="settings-group">
+          <h3>Redirect Settings</h3>
+          
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Redirect URL</h4>
+              <p>Redirect to this URL when a blocked site is accessed</p>
+            </div>
+            <input type="text" id="redirect-url-input" placeholder="https://example.com">
+          </div>
+          
+          <button id="save-redirect-btn" class="btn secondary-btn">Save Redirect URL</button>
+        </div>
+        
+        <div class="settings-group">
+          <h3>Password Protection</h3>
+          
+          <div class="setting-item">
+            <div class="setting-info">
+              <h4>Enable Password Protection</h4>
+              <p>Require password to change settings or disable blocking</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="password-protection-toggle">
+              <span class="slider round"></span>
+            </label>
+          </div>
+          
+          <div id="password-fields" class="hidden">
+            <div class="form-group">
+              <label>Set Password:</label>
+              <input type="password" id="password-input">
+            </div>
+            
+            <div class="form-group">
+              <label>Confirm Password:</label>
+              <input type="password" id="confirm-password-input">
+            </div>
+            
+            <button id="save-password-btn" class="btn secondary-btn">Save Password</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/options.js"></script>
+</body>
+</html>

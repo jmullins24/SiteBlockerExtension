@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Insights - BlockSite Clone</title>
+  <link rel="stylesheet" href="css/insights.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="images/logo.png" alt="BlockSite Clone Logo" class="logo">
+      <h1>BlockSite Clone - Insights</h1>
+      <a href="options.html" class="back-btn">Back to Settings</a>
+    </div>
+    
+    <div class="stats-overview">
+      <div class="stat-card">
+        <h2>Sites Blocked</h2>
+        <div class="stat-value" id="total-sites-blocked">0</div>
+        <p>Total sites blocked</p>
+      </div>
+      
+      <div class="stat-card">
+        <h2>Time Saved</h2>
+        <div class="stat-value" id="total-time-saved">0</div>
+        <p>Hours saved from distractions</p>
+      </div>
+      
+      <div class="stat-card">
+        <h2>Focus Score</h2>
+        <div class="stat-value" id="focus-score">0</div>
+        <p>Your productivity rating</p>
+      </div>
+    </div>
+    
+    <div class="charts-container">
+      <div class="chart-section">
+        <h2>Top Blocked Sites</h2>
+        <div id="top-sites-chart" class="chart"></div>
+      </div>
+      
+      <div class="chart-section">
+        <h2>Blocking Activity by Day</h2>
+        <div id="activity-by-day-chart" class="chart"></div>
+      </div>
+    </div>
+    
+    <div class="detailed-stats">
+      <h2>Detailed Statistics</h2>
+      <div class="stats-table-container">
+        <table id="detailed-stats-table">
+          <thead>
+            <tr>
+              <th>Website</th>
+              <th>Times Blocked</th>
+              <th>Time Saved (est.)</th>
+              <th>Last Blocked</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Data will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/insights.js"></script>
+</body>
+</html>
