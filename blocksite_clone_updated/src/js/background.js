@@ -89,9 +89,11 @@ async function checkIfShouldBlock(url, tabId) {
     
     // Check if current time matches any schedule for this domain
     const shouldBlockBySchedule = checkSchedules(settings.schedules, hostname);
-    
-    // If focus mode is enabled, always block. Otherwise, check schedule
-    const shouldBlock = settings.focusModeEnabled || shouldBlockBySchedule;
+
+    // Determine if blocking should occur
+    // If no schedules are defined, blocking should be active at all times
+    const hasSchedules = Array.isArray(settings.schedules) && settings.schedules.length > 0;
+    const shouldBlock = settings.focusModeEnabled || !hasSchedules || shouldBlockBySchedule;
     
     if (!shouldBlock) return;
     
