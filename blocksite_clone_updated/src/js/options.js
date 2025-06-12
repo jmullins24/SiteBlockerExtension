@@ -465,7 +465,19 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Event listeners
   enableBlockingToggle.addEventListener('change', function() {
-    chrome.storage.sync.set({ isEnabled: this.checked });
+    if (!this.checked) {
+      // Require password before disabling blocking
+      checkPasswordBeforeUnblocking('', (success) => {
+        if (success) {
+          chrome.storage.sync.set({ isEnabled: false });
+        } else {
+          // Revert toggle if password check failed or was canceled
+          enableBlockingToggle.checked = true;
+        }
+      });
+    } else {
+      chrome.storage.sync.set({ isEnabled: true });
+    }
   });
   
   focusModeToggle.addEventListener('change', function() {
